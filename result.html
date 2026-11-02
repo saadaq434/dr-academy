@@ -1,0 +1,573 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>DR Academy | Online Learning</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: #f7f8fc;
+  color: #17243c;
+}
+
+:root {
+  --navy: #101e38;
+  --gold: #dcb65b;
+  --white: #fff;
+  --gray: #697589;
+}
+
+header {
+  background: var(--navy);
+  padding: 18px 7%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.logo {
+  color: white;
+  font-size: 25px;
+  font-weight: 800;
+}
+
+.logo span { color: var(--gold); }
+
+nav {
+  display: flex;
+  gap: 28px;
+}
+
+nav a {
+  color: #e4e9f2;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+nav a:hover { color: var(--gold); }
+
+.hero {
+  min-height: 540px;
+  padding: 100px 8%;
+  display: flex;
+  align-items: center;
+  color: white;
+  background:
+  linear-gradient(90deg, rgba(9,22,43,.96), rgba(9,22,43,.48)),
+  url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=1800')
+  center/cover;
+}
+
+.hero-content { max-width: 650px; }
+
+.tag {
+  color: var(--gold);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+.hero h1 {
+  font-size: clamp(38px, 5vw, 62px);
+  line-height: 1.15;
+  margin: 20px 0;
+}
+
+.hero h1 span { color: var(--gold); }
+
+.hero p {
+  color: #d4dce8;
+  font-size: 17px;
+  line-height: 1.8;
+}
+
+.btn {
+  display: inline-block;
+  background: var(--gold);
+  color: var(--navy);
+  padding: 15px 25px;
+  border: none;
+  border-radius: 6px;
+  margin-top: 25px;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.btn:hover { background: white; }
+
+section { padding: 75px 8%; }
+
+.heading {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.heading small {
+  color: #b38b32;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+.heading h2 {
+  font-size: 34px;
+  margin-top: 10px;
+  color: var(--navy);
+}
+
+.heading p {
+  color: var(--gray);
+  margin-top: 10px;
+}
+
+.courses {
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(260px,1fr));
+  gap: 25px;
+}
+
+.card {
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 5px 25px #101e3810;
+  transition: .3s;
+}
+
+.card:hover {
+  transform: translateY(-7px);
+  box-shadow: 0 12px 30px #101e3820;
+}
+
+.card img {
+  width: 100%;
+  height: 190px;
+  object-fit: cover;
+}
+
+.card-body { padding: 23px; }
+
+.category {
+  color: #ad842a;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.card h3 {
+  margin: 12px 0;
+  color: var(--navy);
+}
+
+.card p {
+  color: var(--gray);
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.card button {
+  border: none;
+  background: var(--navy);
+  color: white;
+  padding: 12px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 18px;
+}
+
+.card button:hover { background: #243d66; }
+
+.features {
+  background: var(--navy);
+  color: white;
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(180px,1fr));
+  gap: 30px;
+  text-align: center;
+}
+
+.feature h3 {
+  color: var(--gold);
+  font-size: 27px;
+}
+
+.feature p {
+  color: #cbd3e0;
+  font-size: 14px;
+}
+
+.register-box {
+  max-width: 540px;
+  margin: auto;
+  padding: 35px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 5px 25px #00000010;
+}
+
+.register-box h2 {
+  margin-bottom: 20px;
+  color: var(--navy);
+}
+
+input, select {
+  width: 100%;
+  padding: 15px;
+  margin: 9px 0;
+  border: 1px solid #dce1e9;
+  border-radius: 6px;
+  font-family: inherit;
+}
+
+.register-box button {
+  width: 100%;
+  border: none;
+  cursor: pointer;
+}
+
+#classroom {
+  display: none;
+}
+
+.lesson-box {
+  background: white;
+  padding: 30px;
+  border-radius: 12px;
+  max-width: 750px;
+  margin: auto;
+}
+
+#certificate {
+  display: none;
+  max-width: 750px;
+  margin: 30px auto;
+  text-align: center;
+  background: white;
+  border: 6px double #dcb65b;
+  padding: 50px 25px;
+}
+
+#certificate h1 {
+  color: #b38b32;
+  margin: 25px;
+}
+
+footer {
+  background: #0b172c;
+  color: white;
+  text-align: center;
+  padding: 35px;
+}
+
+footer span { color: var(--gold); }
+
+@media(max-width:700px) {
+  header { padding: 17px 5%; }
+  nav { gap: 12px; }
+  nav a { font-size: 12px; }
+  .hero { padding: 80px 6%; }
+  section { padding: 55px 6%; }
+}
+
+@media print {
+  body * { visibility: hidden; }
+  #certificate, #certificate * { visibility: visible; }
+  #certificate {
+    display: block !important;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+  }
+  #certificate button { display: none; }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo">DR <span>ACADEMY.</span></div>
+
+  <nav>
+    <a href="#home">Home</a>
+    <a href="#courses">Courses</a>
+    <a href="#about">About</a>
+    <a href="#register">Join Us</a>
+  </nav>
+</header>
+
+<div class="hero" id="home">
+  <div class="hero-content">
+    <div class="tag">WELCOME TO DR ACADEMY</div>
+
+    <h1>
+      Learn Today.<br>
+      <span>Lead Tomorrow.</span>
+    </h1>
+
+    <p>
+      Develop your technology skills and become a great leader.
+      Learn online, improve your knowledge and earn certificates.
+    </p>
+
+    <a href="#courses" class="btn">Explore Courses →</a>
+  </div>
+</div>
+
+<section id="courses">
+
+  <div class="heading">
+    <small>OUR PROGRAMS</small>
+    <h2>Explore Our Courses</h2>
+    <p>Learn valuable skills for your future career.</p>
+  </div>
+
+  <div class="courses">
+
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=700"
+      alt="Computer and IT">
+
+      <div class="card-body">
+        <div class="category">INFORMATION TECHNOLOGY</div>
+        <h3>Computer Basics</h3>
+        <p>Understand computers, hardware, software and digital skills.</p>
+        <button onclick="selectCourse('Computer Basics')">View Course →</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=700"
+      alt="Web Development">
+
+      <div class="card-body">
+        <div class="category">INFORMATION TECHNOLOGY</div>
+        <h3>Web Development</h3>
+        <p>Learn HTML, CSS and JavaScript to build websites.</p>
+        <button onclick="selectCourse('Web Development')">View Course →</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=700"
+      alt="Leadership meeting">
+
+      <div class="card-body">
+        <div class="category">LEADERSHIP</div>
+        <h3>Leadership Skills</h3>
+        <p>Develop communication, teamwork and decision-making skills.</p>
+        <button onclick="selectCourse('Leadership Skills')">View Course →</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=700"
+      alt="Team management">
+
+      <div class="card-body">
+        <div class="category">LEADERSHIP</div>
+        <h3>Team Management</h3>
+        <p>Learn how to manage people, build teams and achieve goals.</p>
+        <button onclick="selectCourse('Team Management')">View Course →</button>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="features" id="about">
+  <div class="feature">
+    <h3>100%</h3>
+    <p>Online Learning</p>
+  </div>
+
+  <div class="feature">
+    <h3>IT</h3>
+    <p>Technology Skills</p>
+  </div>
+
+  <div class="feature">
+    <h3>LEAD</h3>
+    <p>Leadership Development</p>
+  </div>
+
+  <div class="feature">
+    <h3>PDF</h3>
+    <p>Course Certificates</p>
+  </div>
+</div>
+
+<section id="register">
+  <div class="heading">
+    <small>START YOUR JOURNEY</small>
+    <h2>Join DR Academy</h2>
+    <p>Register and begin your learning journey.</p>
+  </div>
+
+  <form class="register-box" id="registerForm">
+    <h2>Student Registration</h2>
+
+    <input id="name" placeholder="Full Name" required>
+
+    <input id="email" type="email"
+    placeholder="Email Address" required>
+
+    <select id="course" required>
+      <option value="">Choose Your Course</option>
+      <option>Computer Basics</option>
+      <option>Web Development</option>
+      <option>Leadership Skills</option>
+      <option>Team Management</option>
+    </select>
+
+    <button class="btn" type="submit">Register Now →</button>
+  </form>
+</section>
+
+<section id="classroom">
+  <div class="heading">
+    <small>STUDENT DASHBOARD</small>
+    <h2>Your Online Classroom</h2>
+  </div>
+
+  <div class="lesson-box">
+    <h2 id="courseTitle"></h2>
+    <p id="lessonText" style="margin:20px 0"></p>
+
+    <button class="btn" onclick="nextLesson()">Next Lesson →</button>
+    <button class="btn" onclick="exam()">Final Exam</button>
+  </div>
+</section>
+
+<div id="certificate">
+  <h2>DR ACADEMY</h2>
+  <p>Certificate of Completion</p>
+  <hr style="margin:20px">
+  <p>This certificate is proudly awarded to</p>
+  <h1 id="certName"></h1>
+  <p>For successfully completing</p>
+  <h2 id="certCourse"></h2>
+  <p id="certDate" style="margin:25px"></p>
+  <p>DR Academy | Online Learning</p>
+  <button class="btn" onclick="window.print()">Print Certificate</button>
+</div>
+
+<footer>
+  <h2>DR <span>ACADEMY.</span></h2>
+  <p>Learn Skills. Build Your Future.</p>
+  <p style="margin-top:20px;font-size:12px">
+    © 2026 DR Academy. All Rights Reserved.
+  </p>
+</footer>
+
+<script>
+let student = "";
+let courseName = "";
+let lesson = 0;
+
+const lessons = {
+  "Computer Basics": [
+    "Lesson 1: Introduction to computers",
+    "Lesson 2: Hardware and Software",
+    "Lesson 3: Operating Systems"
+  ],
+
+  "Web Development": [
+    "Lesson 1: Introduction to HTML",
+    "Lesson 2: CSS and Website Design",
+    "Lesson 3: JavaScript Basics"
+  ],
+
+  "Leadership Skills": [
+    "Lesson 1: Understanding Leadership",
+    "Lesson 2: Communication Skills",
+    "Lesson 3: Decision Making"
+  ],
+
+  "Team Management": [
+    "Lesson 1: Building a Team",
+    "Lesson 2: Team Communication",
+    "Lesson 3: Managing Team Performance"
+  ]
+};
+
+function selectCourse(name) {
+  document.getElementById("course").value = name;
+  document.getElementById("register").scrollIntoView();
+}
+
+document.getElementById("registerForm")
+.addEventListener("submit", function(e) {
+  e.preventDefault();
+
+  student = document.getElementById("name").value;
+  courseName = document.getElementById("course").value;
+  lesson = 0;
+
+  document.getElementById("courseTitle").textContent = courseName;
+  document.getElementById("classroom").style.display = "block";
+
+  showLesson();
+  document.getElementById("classroom").scrollIntoView();
+});
+
+function showLesson() {
+  document.getElementById("lessonText").textContent =
+  lessons[courseName][lesson];
+}
+
+function nextLesson() {
+  if (lesson < lessons[courseName].length - 1) {
+    lesson++;
+    showLesson();
+  } else {
+    alert("All lessons completed! Take the final exam.");
+  }
+}
+
+function exam() {
+  if (lesson !== lessons[courseName].length - 1) {
+    alert("Please complete all lessons first.");
+    return;
+  }
+
+  let answer = prompt(
+    "Final Exam: What is the correct answer?\n" +
+    "A. Learning helps develop skills\n" +
+    "B. Learning is useless\n" +
+    "C. Skills are not important"
+  );
+
+  if (answer && answer.trim().toUpperCase() === "A") {
+    document.getElementById("certName").textContent = student;
+    document.getElementById("certCourse").textContent = courseName;
+    document.getElementById("certDate").textContent =
+    "Date: " + new Date().toLocaleDateString();
+
+    document.getElementById("certificate").style.display = "block";
+    document.getElementById("certificate").scrollIntoView();
+  } else {
+    alert("Incorrect answer. Please try again.");
+  }
+}
+</script>
+
+</body>
+</html>
